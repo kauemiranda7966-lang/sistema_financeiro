@@ -9,8 +9,10 @@ def dashboard():
         return redirect("/")
 
     gastos = listar_gastos(session["usuario_id"])
-    return render_template("dashboard.html", gastos=gastos)
 
+    total = sum(g[2] for g in gastos)
+
+    return render_template("dashboard.html", gastos=gastos, total=total)
 
 @gastos_bp.route("/add", methods=["POST"])
 def add():
@@ -25,3 +27,16 @@ def add():
 def delete(id):
     deletar_gasto(id, session["usuario_id"])
     return redirect("/dashboard")
+
+
+def atualizar_gasto(id, nome, valor, usuario_id):
+    conn = conectar()
+    cursor = conn.cursor()
+
+    cursor.execute(
+        "UPDATE gastos SET nome=?, valor=? WHERE id=? AND usuario_id=?",
+        (nome, valor, id, usuario_id)
+    )
+
+    conn.commit()
+    conn.close()
