@@ -1,7 +1,15 @@
 from flask import Blueprint, render_template, request, redirect, session
-from models.gasto import adicionar_gasto, listar_gastos, deletar_gasto
+
+from models.gasto import (
+    adicionar_gasto,
+    listar_gastos,
+    deletar_gasto,
+    atualizar_gasto,
+    buscar_gasto_por_id
+)
 
 gastos_bp = Blueprint("gastos", __name__)
+
 
 @gastos_bp.route("/dashboard")
 def dashboard():
@@ -9,10 +17,10 @@ def dashboard():
         return redirect("/")
 
     gastos = listar_gastos(session["usuario_id"])
-
-    total = sum(g[2] for g in gastos)
-
+    total = sum(float(g[2]) for g in gastos)
+    
     return render_template("dashboard.html", gastos=gastos, total=total)
+
 
 @gastos_bp.route("/add", methods=["POST"])
 def add():
@@ -29,14 +37,18 @@ def delete(id):
     return redirect("/dashboard")
 
 
-def atualizar_gasto(id, nome, valor, usuario_id):
-    conn = conectar()
-    cursor = conn.cursor()
+@gastos_bp.route("/edit/<int:id>", methods=["GET", "POST"])
+def edit(id):
+    if "usuario_id" not in session:
+        return redirect("/")
 
-    cursor.execute(
-        "UPDATE gastos SET nome=?, valor=? WHERE id=? AND usuario_id=?",
-        (nome, valor, id, usuario_id)
-    )
+    if request.method == "POST":
+        nome = request.form["nome"]
+        valor = request.form["valor"]
 
-    conn.commit()
-    conn.close()
+        atualizar_gasto(id, nome, valor, session["usuario_id"])
+        return redirect("/dashboard")
+
+    gasto = buscar_gasto_por_id(id, session["usuario_id"])
+
+    return render_template("edit.html", gasto=gasto)

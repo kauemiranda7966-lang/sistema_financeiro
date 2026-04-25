@@ -39,3 +39,33 @@ def deletar_gasto(id_gasto, usuario_id):
 
     conn.commit()
     conn.close()
+
+
+# ✅ FORA de qualquer função
+def atualizar_gasto(id_gasto, nome, valor, usuario_id):
+    conn = conectar()
+    cursor = conn.cursor()
+
+    cursor.execute(
+        "UPDATE gastos SET nome=?, valor=? WHERE id=? AND usuario_id=?",
+        (nome, valor, id_gasto, usuario_id)
+    )
+
+    conn.commit()
+    conn.close()
+
+
+# ✅ FORA também
+def buscar_gasto_por_id(id_gasto, usuario_id):
+    conn = conectar()
+    cursor = conn.cursor()
+
+    cursor.execute(
+        "SELECT * FROM gastos WHERE id=? AND usuario_id=?",
+        (id_gasto, usuario_id)
+    )
+
+    gasto = cursor.fetchone()
+    conn.close()
+
+    return gasto

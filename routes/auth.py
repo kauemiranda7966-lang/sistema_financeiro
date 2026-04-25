@@ -34,3 +34,20 @@ def register():
 def logout():
     session.clear()
     return redirect("/")
+
+@auth.route("/register", methods=["GET", "POST"])
+def register():
+    if request.method == "POST":
+        username = request.form["username"]
+        senha = request.form["senha"]
+
+        if len(username) < 3:
+            return "Usuário muito curto"
+
+        if len(senha) < 4:
+            return "Senha muito fraca"
+
+        criar_usuario(username, senha)
+        return redirect("/")
+
+    return render_template("register.html")
