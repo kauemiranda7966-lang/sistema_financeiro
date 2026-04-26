@@ -18,22 +18,11 @@ def login():
     return render_template("login.html")
 
 
-@auth.route("/register", methods=["GET", "POST"])
-def register():
-    if request.method == "POST":
-        username = request.form["username"]
-        senha = request.form["senha"]
-
-        criar_usuario(username, senha)
-        return redirect("/")
-
-    return render_template("register.html")
-
-
 @auth.route("/logout")
 def logout():
     session.clear()
     return redirect("/")
+
 
 @auth.route("/register", methods=["GET", "POST"])
 def register():
