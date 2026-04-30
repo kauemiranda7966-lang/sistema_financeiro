@@ -1,104 +1,133 @@
-# 💰 Sistema de Controle Financeiro
+# 💰 Sistema Financeiro
 
-Aplicação web para gerenciamento de gastos pessoais, permitindo registrar, visualizar e acompanhar despesas.
+🚀 Projeto web com foco em backend utilizando Flask
+
+Aplicação web desenvolvida para controle de gastos pessoais, permitindo que usuários registrem receitas, despesas e acompanhem sua vida financeira de forma simples e organizada.
+
+🔗 **Acesse o sistema online:**  
+https://sistema-financeiro-1-pdhw.onrender.com
+
+
+
+## 🌐 Deploy
+
+O projeto está hospedado no Render e pode ser acessado pelo link acima.
+
+
+## ⚠️ Observação sobre o acesso
+
+O sistema está hospedado no Render (plano gratuito).  
+Pode levar alguns segundos para carregar na primeira vez devido ao "cold start" do servidor.
+
+Caso o sistema não carregue, tente atualizar a página após alguns instantes.
 
 ---
+
+
 
 ## 🚀 Funcionalidades
 
-* Adicionar gastos
-* Listar despesas
-* Remover gastos
-* Visualizar total gasto
-* Organização por usuário *(se implementado)*
+* 🔐 Cadastro e login de usuários
+* 💸 Registro de receitas e despesas
+* 📊 Visualização do saldo total
+* 📅 Organização dos gastos por data
+* 🧾 Listagem de transações
 
 ---
 
-## 🛠️ Tecnologias
+## 🛠️ Tecnologias utilizadas
 
-* Python (Flask)
-* SQLite
-* HTML, CSS
-* JavaScript *(opcional, se tiver interação)*
-
----
-
-## 📂 Estrutura do Projeto
-
-```text
-sistema_financeiro/
-├── app.py
-├── database.db
-├── templates/
-│   ├── index.html
-│   └── (outros arquivos HTML)
-└── static/
-    ├── style.css
-    └── script.js
-```
+* **Python**
+* **Flask**
+* **SQLite**
+* **HTML5**
+* **CSS3**
+* **Bootstrap**
 
 ---
 
-## ▶️ Como rodar o projeto
 
-### 🔹 1. Instalar dependências
+## 📸 Demonstração
+
+### 🔐 Tela de Login
+![Login](assets/login.png)
+
+### 💸 Cadastro de Gastos
+![Gastos](assets/gastos.png)
+
+
+## ⚙️ Como rodar o projeto localmente
 
 ```bash
-pip install flask
-```
+# Clone o repositório
+git clone https://github.com/kauemiranda7966-lang/sistema_financeiro
 
----
+# Entre na pasta
+cd sistema_financeiro
 
-### 🔹 2. Executar o sistema
+# Crie um ambiente virtual
+python -m venv venv
 
-```bash
+# Ative o ambiente virtual
+# Windows
+venv\Scripts\activate
+
+# Instale as dependências
+pip install -r requirements.txt
+
+# Execute o projeto
 python app.py
 ```
 
----
+Acesse no navegador:
 
-### 🔹 3. Acessar no navegador
-
-```text
+```
 http://127.0.0.1:5000
 ```
 
 ---
 
-## 📸 Preview
+## 📂 Estrutura do projeto
 
-*(adicione aqui uma imagem do sistema funcionando)*
-
----
-
-## 📊 Exemplo de uso
-
-* Adicionar gasto: "Mercado - R$50"
-* Sistema registra e soma automaticamente
-
----
-
-## 💡 Possíveis melhorias
-
-* Sistema de login (autenticação)
-* Gráficos de gastos
-* Filtro por data
-* Exportar dados (CSV/Excel)
-* Categorias de despesas
+```
+/project
+│── app.py
+│── database.db
+│── /templates
+│── /static
+```
 
 ---
 
-## 📌 Objetivo
+## 🔒 Segurança (melhorias futuras)
 
-Projeto desenvolvido para praticar:
+* Criptografia de senhas
+* Validação de dados
+* Proteção contra SQL Injection
 
-* CRUD com banco de dados
-* Lógica de programação
-* Desenvolvimento web com Flask
-* Organização de dados financeiros
+---
+
+## 🎯 Objetivo do projeto
+
+Este projeto foi desenvolvido com foco em aprendizado de desenvolvimento backend com Flask, abordando:
+
+* CRUD completo
+* Autenticação de usuários
+* Integração com banco de dados
+* Estrutura de aplicações web
+
+---
+
+## 📈 Melhorias futuras
+
+* 📊 Gráficos de gastos (Chart.js)
+* 📱 Responsividade completa
+* ☁️ Migração para banco de dados em produção
+* 🔔 Alertas de gastos
 
 ---
 
 ## 👨‍💻 Autor
 
-Kauê Miranda
+Desenvolvido por Kauê Miranda
+GitHub: https://github.com/kauemiranda7966-lang
